@@ -1,0 +1,1 @@
+# wordpress-to-static-s3-cloudfront
