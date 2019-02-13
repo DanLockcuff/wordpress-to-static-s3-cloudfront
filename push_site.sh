@@ -44,33 +44,12 @@ find $workspace_folder -name "*.DS_Store" -type f -delete
 find $workspace_folder -not -iname "index.html" -name "index*.html" -type f -delete
 find $workspace_folder -name "feed" -type d -print0|xargs -0 rm -r --
 find $workspace_folder -name "comments" -type d -print0|xargs -0 rm -r --
-## FIX FOR OSX -  -i '' ---- find $workspace_folder -type f -name '*.html' -exec sed -i '' -e "s|../../../../clients.$domain/cocacocaholiday/|/|g" {} +
 # WORKING FOLDER - INDEX.HTML FILES - Find Replace references /clients.$domain/ to /
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|//$multisite_domain/$sub_folder|//$multisite_domain|g" {} +
 find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|/$sub_folder/|/|g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|//clients.$domain/cocacocaholiday|//$domain|g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|//clients.$domain/$sub_folder|//$domain|g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|http://$domain/$sub_folder||g" {} +
 find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|$multisite_domain/$sub_folder||g" {} +
 find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|http://$multisite_domain||g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|clients.$domain/$sub_folder||g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|clients.$domain/cocacocaholiday||g" {} +
 # WORKING FOLDER - INDEX.HTML FILES - Replace all references of index.html with empty
-find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|index.html||g" {} +
-##WEIRD FIXES FOR BAD URLS?
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../../../../clients.$domain/cocacocaholiday/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../../../clients.$domain/cocacocaholiday/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../../clients.$domain/cocacocaholiday/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../clients.$domain/cocacocaholiday/|/|g" {} +
-#
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../../../../clients.$domain/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../../../clients.$domain/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../.../cocacolaholiday./clients.$domain/|/|g" {} +
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|../clients.$domain/|/|g" {} +
-#
-# find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|\"../cocacolaholiday\"|/|g" {} +
-#find $workspace_folder -type f -name '*.html' -exec sh -c "tr -d '$domain\/$sub_folder' '$domain'" -- {} \;
-#find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|$multisite_domain\\\/$sub_folder|$multisite_domain|g" {} +
+find $workspace_folder -type f -name '*.html' -exec sed -i -e "s|index.html||g" {} ++
 ##AMAZON SYNC
 echo "Cleaning Up Amazon S3 $s3_bucket Bucket"    #Uncomment the 4 below for top level sites
 #aws s3 rm s3://$s3_bucket/index.html --profile $profile
